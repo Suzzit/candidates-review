@@ -1,0 +1,68 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-nav a {
+  color: var(--text-h);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.app-nav a:hover {
+  color: var(--accent);
+}
+
+.app-user {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.app-user strong {
+  color: var(--text-h);
+}
+
+.app-logout {
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.app-logout:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: left;
+}
