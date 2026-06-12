@@ -1,0 +1,6 @@
+/backend/candidate.db
+/backend/venv
+/backend/__pycache__
+/backend/app/__pycache__
+
+/fronend/node_modules
