@@ -1,0 +1,4 @@
+__pycache__
+candidate.db
+.env
+frontend/package-lock.json
