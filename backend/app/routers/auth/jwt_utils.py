@@ -1,16 +1,13 @@
+from app.make_request import get_public_key
 import jwt
 from fastapi import HTTPException, Request
 
-secret_key = "Secret key"
-
-
-def encode_payload(payload):
-    return jwt.encode(payload, secret_key, algorithm="HS256")
-
 
 def decode_token(token):
+    public_key = get_public_key().get('public_key')
+    print('\n' * 5, public_key)
     try:
-        return jwt.decode(token, secret_key, algorithms=["HS256"])
+        return jwt.decode(token, public_key, algorithms=["RS256"])
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
