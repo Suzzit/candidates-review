@@ -2,7 +2,6 @@
 
 from app.models import engine
 from app.models import Base
-from app.models import users
 from app.models import score
 
 def create_tables():
