@@ -1,6 +1,17 @@
 version: "3.9"
 
 services:
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    container_name: auth
+    ports:
+      - "7000:7000"
+    volumes:
+      - ./auth:/auth
+    restart: unless-stopped
+
   backend:
     build:
       context: ./backend
