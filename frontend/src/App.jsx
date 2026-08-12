@@ -9,15 +9,15 @@ import Register from './pages/Register'
 import './App.css'
 
 function HomeRedirect() {
-  const { user } = useAuth()
+    const { user } = useAuth()
 
-  if (!user) return <Navigate to="/login" replace />
+    if (!user) return <Navigate to="/login" replace />
 
-  if (user.role === 'reviewer' || user.role === 'admin') {
-    return <Navigate to="/candidates" replace />
-  }
+    if (user.role === 'reviewer' || user.role === 'admin') {
+        return <Navigate to="/candidates" replace />
+    }
 
-  return <Navigate to={`/candidates/${user.id}`} replace />
+    return <Navigate to={`/candidates/${user.id}`} replace />
 }
 
 function CandidateList() {
@@ -39,7 +39,7 @@ function CandidateDetail() {
 }
 
 function CandidateOwnerRoute() {
-    let user = {id: 123}
+    let user = { id: 123 }
     const id = useParams().id
 
     console.log(id, user.id)
@@ -49,35 +49,37 @@ function CandidateOwnerRoute() {
     }
 
     if (user.id == id) {
-        return <Outlet /> 
+        return <Outlet />
     }
 
-    return <div>
-        <h2>Access Denied</h2>
-        <p>You are not the owner of this candidate profile.</p>
-    </div>
+    return (
+        <div>
+            <h2>Access Denied</h2>
+            <p>You are not the owner of this candidate profile.</p>
+        </div>
+    )
 }
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+    return (
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-        <Route element={<RoleProtectedRoute  roles={['reviewer', 'admin']} />}>
-        <Route element={<Layout />}>
-            <Route path="/candidates" element={<CandidateList />} />
-          </Route>
-</Route>
-        <Route element={<CandidateOwnerRoute />}>
-            <Route element={<Layout />}>
-          <Route path="/candidates/:id" element={<CandidateDetail />} />
-        </Route>
-      </Route>
+            <Route element={<RoleProtectedRoute roles={['reviewer', 'admin']} />}>
+                <Route element={<Layout />}>
+                    <Route path="/candidates" element={<CandidateList />} />
+                </Route>
+            </Route>
+            <Route element={<CandidateOwnerRoute />}>
+                <Route element={<Layout />}>
+                    <Route path="/candidates/:id" element={<CandidateDetail />} />
+                </Route>
+            </Route>
 
-      <Route path="/" element={<HomeRedirect />} />
-    </Routes>
-  )
+            <Route path="/" element={<HomeRedirect />} />
+        </Routes>
+    )
 }
 
 export default App
