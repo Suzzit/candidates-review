@@ -1,18 +1,21 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
-function ProtectedRoute({ roles }) {
-  const { user } = useAuth()
+function RoleProtectedRoute({ roles }) {
+    let { user } = useAuth()
 
-  if (!user) {
-    return <Navigate to="/login" replace />
-  }
+    if (!user) {
+        return <Navigate to="/login" replace />
+    }
 
-  if (roles && !roles.includes(user.role)) {
-    return <Navigate to={`/candidates/${user.id}`} replace />
-  }
+    if (roles && roles.includes(user.role)) {
+        return <Outlet />
+    }
 
-  return <Outlet />
+    return <div style={{ padding: '1rem' }}>
+        <h2>Access Denied</h2>
+        <p>You do not have permission to view this page.</p>
+    </div>
 }
 
-export default ProtectedRoute
+export default RoleProtectedRoute
