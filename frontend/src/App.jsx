@@ -4,8 +4,8 @@ import RoleProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import CandidateList from './pages/CandidateList'
-import CandidateDetail from './pages/CandidateDetail'
+// import CandidateList from './pages/CandidateList'
+// import CandidateDetail from './pages/CandidateDetail'
 import './App.css'
 
 function HomeRedirect() {
@@ -19,8 +19,24 @@ function HomeRedirect() {
 
   return <Navigate to={`/candidates/${user.id}`} replace />
 }
-import { useParams } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
+
+function CandidateList() {
+    return (
+        <div>
+            <h2>Candidate List</h2>
+            <p>This is the candidate list page.</p>
+        </div>
+    )
+}
+
+function CandidateDetail() {
+    return (
+        <div>
+            <h2>Candidate Detail</h2>
+            <p>This is the candidate detail page.</p>
+        </div>
+    )
+}
 
 function CandidateOwnerRoute() {
     let user = {id: 123}
