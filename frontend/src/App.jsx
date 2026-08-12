@@ -19,6 +19,28 @@ function HomeRedirect() {
 
   return <Navigate to={`/candidates/${user.id}`} replace />
 }
+import { useParams } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+
+function CandidateOwnerRoute() {
+    let user = {id: 123}
+    const id = useParams().id
+
+    console.log(id, user.id)
+
+    if (!user) {
+        return <Navigate to="/login" replace />
+    }
+
+    if (user.id == id) {
+        return <Outlet /> 
+    }
+
+    return <div>
+        <h2>Access Denied</h2>
+        <p>You are not the owner of this candidate profile.</p>
+    </div>
+}
 
 function App() {
   return (
@@ -30,6 +52,9 @@ function App() {
         <Route element={<Layout />}>
             <Route path="/candidates" element={<CandidateList />} />
           </Route>
+</Route>
+        <Route element={<CandidateOwnerRoute />}>
+            <Route element={<Layout />}>
           <Route path="/candidates/:id" element={<CandidateDetail />} />
         </Route>
       </Route>
